@@ -1,0 +1,42 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: fraud_postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cyber2026
+      POSTGRES_DB: fraud_detection_db
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  fastapi:
+    build: .
+    container_name: fraud_fastapi
+
+    depends_on:
+      - postgres
+
+    ports:
+      - "8000:8000"
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+
+    container_name: fraud_streamlit
+
+    depends_on:
+      - fastapi
+
+    ports:
+      - "8501:8501"
+
+volumes:
+  postgres_data:
