@@ -10,3 +10,8 @@ sqlalchemy
 psycopg2-binary
 requests
 python-multipart
+python-dotenv
+plotly
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1

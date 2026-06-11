@@ -203,6 +203,25 @@ from sklearn.metrics import classification_report
 print("\nRandom Forest Classification Report:")
 print(classification_report(y_test, rf_pred))
 
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score
+)
+
+print("\nAccuracy:")
+print(accuracy_score(y_test, rf_pred))
+
+print("\nPrecision:")
+print(precision_score(y_test, rf_pred))
+
+print("\nRecall:")
+print(recall_score(y_test, rf_pred))
+
+print("\nF1 Score:")
+print(f1_score(y_test, rf_pred))
+
 from sklearn.metrics import confusion_matrix
 
 rf_cm = confusion_matrix(y_test, rf_pred)
