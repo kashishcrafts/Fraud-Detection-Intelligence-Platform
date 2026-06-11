@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from fastapi import FastAPI, Header
 import joblib
 from pydantic import BaseModel
@@ -301,7 +300,6 @@ def get_predictions(
             for row in result
         ]
 
-=======
 from fastapi import FastAPI
 import joblib
 from pydantic import BaseModel
@@ -398,6 +396,5 @@ def get_predictions():
             dict(row._mapping)
             for row in result
         ]
-
->>>>>>> d7cc06efc5da1142cb42abd2819e93cfde5d83bb
+        
     return data
