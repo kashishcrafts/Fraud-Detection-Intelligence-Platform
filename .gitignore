@@ -14,3 +14,7 @@ models/*.pkl
 
 .idea/
 .vscode/
+
+data/raw/
+*.csv
+__pycache__/
