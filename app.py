@@ -6,6 +6,8 @@ import requests
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, auc
 
+API_URL = "https://fraud-detection-intelligence-platform-production.up.railway.app"
+
 st.title("🛡️ Fraud Detection Intelligence Platform")
 if "token" not in st.session_state:
     st.session_state.token = None
