@@ -22,7 +22,8 @@ password = st.sidebar.text_input(
     type="password"
 )
 
-if st.session_state.username:
+if "username" not in st.session_state:
+    st.session_state.username = None
 
     st.sidebar.success(
         f"Logged in as: {st.session_state.username}"
@@ -104,8 +105,7 @@ page = st.sidebar.selectbox(
     ]
 )
 
-API_URL = "http://fastapi:8000"
-
+API_URL = "https://fraud-detection-intelligence-platform-production.up.railway.app"
 # ==========================
 # Prediction Dashboard
 # ==========================
