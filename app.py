@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -439,7 +438,7 @@ if page == "Admin Dashboard":
             fig,
             use_container_width=True
         )
-=======
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -565,4 +564,4 @@ if page == "Prediction History":
     history_df = pd.DataFrame(history_data)
 
     st.dataframe(history_df)
->>>>>>> d7cc06efc5da1142cb42abd2819e93cfde5d83bb
+
