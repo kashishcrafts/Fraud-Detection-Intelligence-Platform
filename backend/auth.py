@@ -1,4 +1,5 @@
 from passlib.context import CryptContext
+from backend.auth import router as auth_router
 from jose import jwt, JWTError
 from datetime import datetime, timedelta
 
