@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Header
-from auth import router as auth_router
+from backend.auth import router as auth_router
 import joblib
 from pydantic import BaseModel
 from sqlalchemy import (
@@ -25,8 +25,6 @@ from backend.auth import (
 )
 
 app = FastAPI()
-
-app.include_router(auth_router)
 
 # ==========================
 # Load ML Model
