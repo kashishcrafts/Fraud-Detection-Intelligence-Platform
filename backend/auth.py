@@ -1,41 +1,19 @@
+from fastapi import APIRouter, HTTPException
 from passlib.context import CryptContext
 from jose import jwt, JWTError
 from datetime import datetime, timedelta
 
-# ==========================
-# Password Hashing
-# ==========================
+router = APIRouter()
 
 pwd_context = CryptContext(
     schemes=["pbkdf2_sha256"],
     deprecated="auto"
 )
 
-def hash_password(password: str):
-    return pwd_context.hash(password)
-
-def verify_password(
-    plain_password: str,
-    hashed_password: str
-):
-    return pwd_context.verify(
-        plain_password,
-        hashed_password
-    )
-
-# ==========================
-# JWT Configuration
-# ==========================
-
 SECRET_KEY = "fraud_detection_secret_key_2026"
-
 ALGORITHM = "HS256"
-
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-# ==========================
-# Create JWT Token
-# ==========================
 
 def create_access_token(data: dict):
 
@@ -45,35 +23,36 @@ def create_access_token(data: dict):
         minutes=ACCESS_TOKEN_EXPIRE_MINUTES
     )
 
-    to_encode.update(
-        {"exp": expire}
-    )
+    to_encode.update({"exp": expire})
 
-    encoded_jwt = jwt.encode(
+    return jwt.encode(
         to_encode,
         SECRET_KEY,
         algorithm=ALGORITHM
     )
 
-    return encoded_jwt
 
-# ==========================
-# Verify JWT Token
-# ==========================
+@router.post("/login")
+def login(user: dict):
 
-def verify_token(token: str):
+    username = user.get("username")
+    password = user.get("password")
 
-    try:
+    if (
+        username == "admin"
+        and password == "admin123"
+    ):
 
-        payload = jwt.decode(
-            token,
-            SECRET_KEY,
-            algorithms=[ALGORITHM]
+        token = create_access_token(
+            {"sub": username}
         )
 
-        username = payload.get("sub")
+        return {
+            "access_token": token,
+            "token_type": "bearer"
+        }
 
-        return username
-
-    except JWTError:
-        return None
+    raise HTTPException(
+        status_code=401,
+        detail="Invalid credentials"
+    )
